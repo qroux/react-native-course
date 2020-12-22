@@ -11,20 +11,25 @@ const ImageDetail = ({ title, url }) => {
                     height: 100,
                     width: 100
                 }} />
-            <Text>{title}</Text>
+            <Text style={style.text}>{title}</Text>
         </View>
     )
 }
 
 const style = StyleSheet.create({
     fullContainer: {
-        borderBottomColor: "black",
-        borderBottomWidth: 0.5,
         flexDirection: 'row',
         marginBottom: 20
     },
     image: {
-        marginRight: 50
+
+    },
+    text: {
+        flex: 1,
+        borderBottomColor: "black",
+        borderBottomWidth: 0.5,
+        paddingLeft: 50
+
     }
 })
 
