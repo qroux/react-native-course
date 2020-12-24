@@ -6,21 +6,13 @@ const PickerButton = ({ state, str, dispatch }) => {
     <View>
       <TouchableOpacity
         style={[style.button, style.odd, { backgroundColor: str }]}
-        onPress={() =>
-          state[str] + 10 > 255
-            ? null
-            : dispatch({ colorToChange: str, amount: 10 })
-        }
+        onPress={() => dispatch({ colorToChange: str, amount: 10 })}
       >
         <Text>More {str}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[style.button, style.even, { backgroundColor: str }]}
-        onPress={() =>
-          state[str] - 10 < 0
-            ? null
-            : dispatch({ colorToChange: str, amount: -10 })
-        }
+        onPress={() => dispatch({ colorToChange: str, amount: -10 })}
       >
         <Text>Less {str}</Text>
       </TouchableOpacity>
