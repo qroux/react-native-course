@@ -1,18 +1,26 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const PickerButton = ({ str, color, setter }) => {
+const PickerButton = ({ state, str, dispatch }) => {
   return (
     <View>
       <TouchableOpacity
         style={[style.button, style.odd, { backgroundColor: str }]}
-        onPress={() => (color + 10 > 255 ? null : setter(color + 10))}
+        onPress={() =>
+          state[str] + 10 > 255
+            ? null
+            : dispatch({ colorToChange: str, amount: 10 })
+        }
       >
         <Text>More {str}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[style.button, style.even, { backgroundColor: str }]}
-        onPress={() => (color - 10 < 0 ? null : setter(color - 10))}
+        onPress={() =>
+          state[str] - 10 < 0
+            ? null
+            : dispatch({ colorToChange: str, amount: -10 })
+        }
       >
         <Text>Less {str}</Text>
       </TouchableOpacity>
