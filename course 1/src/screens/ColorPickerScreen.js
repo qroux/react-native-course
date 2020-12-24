@@ -1,11 +1,5 @@
-import React, { useState, useReducer } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import React, { useReducer } from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 import PickerButton from "../components/PickerButton";
 
