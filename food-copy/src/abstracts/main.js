@@ -1,3 +1,5 @@
 import Colors from "./_colors";
+import Spacing from "./_spacing";
+import Fonts from "./_fonts";
 
-export { Colors };
+export { Colors, Spacing, Fonts };
