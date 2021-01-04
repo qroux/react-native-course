@@ -1,6 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import useResults from "../hooks/useResults";
 import { Spacing, Colors } from "../abstracts/main";
 
@@ -11,20 +11,21 @@ const HomeScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMsg] = useResults();
 
+  const filterResultsByPrice = (price) => {
+    console.log(results)
+    return results.filter(result => {
+      return result.price === price
+    })
+  }
+
   return (
     <View>
       <SearchBar setTerm={setTerm} searchApi={searchApi} term={term} />
       {errorMsg ? <Text style={style.results}>{errorMsg}</Text> : null}
       <Text style={style.results}>{results.length} results</Text>
-
-      <ResultsList results={results} />
-
-      <FlatList
-        data={results}
-        renderItem={() => {
-          <Text>test</Text>;
-        }}
-      />
+      <ResultsList results={filterResultsByPrice("€")} title="Cost Effective" />
+      <ResultsList results={filterResultsByPrice("€€")} title="Bit Pricier" />
+      <ResultsList results={filterResultsByPrice("€€€")} title="Top quality" />
     </View>
   );
 };

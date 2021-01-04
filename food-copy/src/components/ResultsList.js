@@ -1,14 +1,17 @@
 import React from "react";
 import { Text, FlatList, View, StyleSheet } from "react-native";
+import { Spacing, Fonts } from '../abstracts/main'
 
 import RestaurantCard from "../components/RestaurantCard";
 
-const ResultsList = ({ results }) => {
+const ResultsList = ({ results, title }) => {
   return (
     <View style={style.container}>
+      <Text style={style.title}>{title}: {results.length}</Text>
       <FlatList
+        horizontal
         data={results}
-        keyExtractor={(result) => result.name}
+        keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
           return (
             <RestaurantCard
@@ -28,8 +31,13 @@ const ResultsList = ({ results }) => {
 
 const style = StyleSheet.create({
   container: {
-    marginBottom: 200,
+    height: 200
   },
+  title: {
+    margin: Spacing.regular,
+    fontWeight: "bold",
+    fontSize: Fonts.big
+  }
 });
 
 export default ResultsList;
