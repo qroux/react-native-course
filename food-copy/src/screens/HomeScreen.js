@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import useResults from "../hooks/useResults";
 import { Spacing, Colors } from "../abstracts/main";
 
@@ -19,14 +19,17 @@ const HomeScreen = () => {
   }
 
   return (
-    <View>
+    <>
       <SearchBar setTerm={setTerm} searchApi={searchApi} term={term} />
       {errorMsg ? <Text style={style.results}>{errorMsg}</Text> : null}
       <Text style={style.results}>{results.length} results</Text>
+      <ScrollView>
       <ResultsList results={filterResultsByPrice("€")} title="Cost Effective" />
       <ResultsList results={filterResultsByPrice("€€")} title="Bit Pricier" />
       <ResultsList results={filterResultsByPrice("€€€")} title="Top quality" />
-    </View>
+      </ScrollView>
+
+    </>
   );
 };
 
