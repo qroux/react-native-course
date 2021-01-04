@@ -19,7 +19,7 @@ const ResultsList = ({ results, title }) => {
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id})}>
+            <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id, address: item.location.address1})}>
               <RestaurantCard
               name={item.name}
               img={

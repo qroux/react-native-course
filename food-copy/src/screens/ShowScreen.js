@@ -1,35 +1,65 @@
 import React, {useState, useEffect} from 'react'
-import { View, Text, Image, FlatList } from 'react-native'
+import { ScrollView, View, Text, Image, FlatList, StyleSheet } from 'react-native'
+import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { Spacing, Fonts } from '../abstracts/main';
 import yelp from "../api/yelp";
 
 const ShowScreen = ({route}) => {
-    // const [images, setImages] = useState([])
+    const [result, setResult] = useState([])
+    const {name, review_count, rating} = result
 
-    // const searchImages = async (restaurantId) => {
-    //     const res = await yelp.get('/businesses', {params: {id: restaurantId}})
-    //     setImages(res.data.photos);
+    const getResult = async (restaurantId) => {
+        const res = await yelp.get(`/${restaurantId}`)
+        setResult(res.data);
 
-    // }
+    }
 
-    // useEffect(() => {
-    //     searchImages(route.params.id)
-    // }, [])
+    useEffect(() => {
+        getResult(route.params.id)
+    }, [])
+
+    
 
 
     return (
-        <View>
-            <Text>Show Screen: {route.params.id} | images: 0</Text>
-            {/* <FlatList
-                data={images}
+        <ScrollView contentContainerStyle={style.fullContainer}>
+            <View style={style.header}>
+                <Text style={{fontSize: 20, fontWeight: 'bold'}}>{name}</Text>
+                <View>
+                    <Text>{review_count} <Ionicons name="person" size={Fonts.small} color="black" /> | {rating} <AntDesign name="staro" size={Fonts.small} color="black" /></Text>
+                </View>
+            </View>
+            <View>
+                <Text style={{color: 'black'}}>{route.params.address}</Text>
+            </View>
+            <FlatList
+                contentContainerStyle={style.imagesContainer}           
+                data={result.photos}
                 keyExtractor={image => image}
                 renderItem={({item}) => {
-                    <Image source={{ uri: image
-                    , height: 100, width: 270 }} />
+                    return <Image style={style.image} source={{ uri: item, height: 170, width: 300 }} />
                 }}
-            /> */}
-        </View>
+            />
+        </ScrollView>
     )
 }
 
+const style = StyleSheet.create({
+    fullContainer: {
+        padding: Spacing.regular
+
+    },
+    imagesContainer: {
+        alignItems: 'center',
+        marginTop: Spacing.regular
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    image: {
+        marginVertical: Spacing.small
+    }
+})
 
 export default ShowScreen;
