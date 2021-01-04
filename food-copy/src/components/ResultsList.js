@@ -1,10 +1,14 @@
 import React from "react";
-import { Text, FlatList, View, StyleSheet } from "react-native";
+import { Text, FlatList, View, StyleSheet, TouchableOpacity } from "react-native";
 import { Spacing, Fonts } from '../abstracts/main'
+import { useNavigation } from '@react-navigation/native';
 
 import RestaurantCard from "../components/RestaurantCard";
 
+
 const ResultsList = ({ results, title }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={style.container}>
       <Text style={style.title}>{title}: {results.length}</Text>
@@ -15,7 +19,8 @@ const ResultsList = ({ results, title }) => {
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
           return (
-            <RestaurantCard
+            <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id})}>
+              <RestaurantCard
               name={item.name}
               img={
                 item.image_url ||
@@ -25,6 +30,9 @@ const ResultsList = ({ results, title }) => {
               rating={item.rating}
               reviews={item.review_count}
             />
+
+            </TouchableOpacity>
+
           );
         }}
       />
