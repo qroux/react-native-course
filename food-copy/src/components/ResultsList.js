@@ -9,6 +9,10 @@ import RestaurantCard from "../components/RestaurantCard";
 const ResultsList = ({ results, title }) => {
   const navigation = useNavigation();
 
+  if (results.length <= 0) {
+    return <></>
+  }
+
   return (
     <View style={style.container}>
       <Text style={style.title}>{title}: {results.length}</Text>
