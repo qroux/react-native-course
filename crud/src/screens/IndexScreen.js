@@ -2,22 +2,23 @@
 import React, { useContext } from "react";
 import { View, Text, Button } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
-import BlogContext from "../context/BlogContext";
+import { Context } from "../context/BlogContext";
 
 const IndexScreen = () => {
-  const value = useContext(BlogContext);
+  const { state, addBlogPost, removeBlogPost } = useContext(Context);
 
   return (
     <View>
       <Text>Index Screen</Text>
+      <Button onPress={addBlogPost} title="Add +" />
+      <Button title="Remove -" onPress={removeBlogPost} />
       <FlatList
-        data={value.blogPosts}
+        data={state}
         keyExtractor={(post) => post.title}
         renderItem={({ item }) => {
           return <Text>{item.title}</Text>;
         }}
       />
-      <Button onPress={() => value.addBlogPost()} title="Add +" />
     </View>
   );
 };

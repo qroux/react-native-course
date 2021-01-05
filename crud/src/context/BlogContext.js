@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import createDataContext from "./createDataContext";
 
-// Create the Context Object
-const BlogContext = React.createContext();
-
-// Make it available everywhere by wrapping a component with this BlogProvider Component
-export const BlogProvider = ({ children }) => {
-  const [blogPosts, setBlogPosts] = useState([]);
-
-  const addBlogPost = () => {
-    setBlogPosts([...blogPosts, { title: `Article ${blogPosts.length}` }]);
-  };
-
-  return (
-    <BlogContext.Provider value={{ blogPosts, addBlogPost }}>
-      {children}
-    </BlogContext.Provider>
-  );
+const blogReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_BLOGPOST":
+      return [...state, { title: `Article #${state.length}` }];
+    case "REMOVE_BLOGPOST":
+      const newState = [...state];
+      newState.pop();
+      return newState;
+    default:
+      return state;
+  }
 };
 
-export default BlogContext;
+const addBlogPost = (dispatch) => {
+  return () => {
+    dispatch({ type: "ADD_BLOGPOST" });
+  };
+};
+
+const removeBlogPost = (dispatch) => {
+  return () => {
+    dispatch({ type: "REMOVE_BLOGPOST" });
+  };
+};
+
+export const { Context, Provider } = createDataContext(
+  blogReducer,
+  { addBlogPost, removeBlogPost },
+  []
+);
