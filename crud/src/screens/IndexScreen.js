@@ -6,22 +6,24 @@ import { Context } from "../context/BlogContext";
 import { FontAwesome } from "@expo/vector-icons";
 
 const IndexScreen = () => {
-  const { state, addBlogPost, removeBlogPost } = useContext(Context);
+  const { state, addBlogPost, deleteBlogPost } = useContext(Context);
 
   return (
     <View>
       <Text>Index Screen</Text>
       <Button onPress={addBlogPost} title="Add +" />
-      <Button title="Remove -" onPress={removeBlogPost} />
+      <Button title="Delete -" onPress={deleteBlogPost} />
       <FlatList
         data={state}
         keyExtractor={(post) => post.title}
         renderItem={({ item, index }) => {
           return (
             <View style={style.postsContainer}>
-              <Text style={style.postTitle}>{item.title}</Text>
-              <TouchableOpacity onPress={() => removeBlogPost(index)}>
-                <FontAwesome name="trash-o" size={20} color="black" />
+              <Text style={style.postTitle}>
+                {item.title}, id: {item.id}
+              </Text>
+              <TouchableOpacity onPress={() => deleteBlogPost(index)}>
+                <FontAwesome name="trash-o" size={25} color="black" />
               </TouchableOpacity>
             </View>
           );

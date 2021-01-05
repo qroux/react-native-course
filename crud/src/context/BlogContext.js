@@ -3,10 +3,16 @@ import createDataContext from "./createDataContext";
 const blogReducer = (state, action) => {
   switch (action.type) {
     case "ADD_BLOGPOST":
-      return [...state, { title: `Article #${state.length}` }];
-    case "REMOVE_BLOGPOST":
+      return [
+        ...state,
+        {
+          id: Math.floor(Math.random() * 99999),
+          title: `Article #${state.length}`,
+        },
+      ];
+    case "DELETE_BLOGPOST":
       const newState = [...state];
-      newState.pop();
+      newState.splice(action.payload, 1);
       return newState;
     default:
       return state;
@@ -19,14 +25,14 @@ const addBlogPost = (dispatch) => {
   };
 };
 
-const removeBlogPost = (dispatch) => {
-  return () => {
-    dispatch({ type: "REMOVE_BLOGPOST" });
+const deleteBlogPost = (dispatch) => {
+  return (id) => {
+    dispatch({ type: "DELETE_BLOGPOST", payload: id });
   };
 };
 
 export const { Context, Provider } = createDataContext(
   blogReducer,
-  { addBlogPost, removeBlogPost },
+  { addBlogPost, deleteBlogPost },
   []
 );
