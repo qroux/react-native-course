@@ -6,14 +6,12 @@ const blogReducer = (state, action) => {
       return [
         ...state,
         {
-          id: Math.floor(Math.random() * 99999),
+          id: Math.floor(Math.random() * 99999).toString(),
           title: `Article #${state.length}`,
         },
       ];
     case "DELETE_BLOGPOST":
-      const newState = [...state];
-      newState.splice(action.payload, 1);
-      return newState;
+      return [...state].filter((post) => post.id !== action.payload);
     default:
       return state;
   }

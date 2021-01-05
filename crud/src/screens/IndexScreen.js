@@ -15,14 +15,14 @@ const IndexScreen = () => {
       <Button title="Delete -" onPress={deleteBlogPost} />
       <FlatList
         data={state}
-        keyExtractor={(post) => post.title}
-        renderItem={({ item, index }) => {
+        keyExtractor={(post) => post.id}
+        renderItem={({ item }) => {
           return (
             <View style={style.postsContainer}>
               <Text style={style.postTitle}>
                 {item.title}, id: {item.id}
               </Text>
-              <TouchableOpacity onPress={() => deleteBlogPost(index)}>
+              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
                 <FontAwesome name="trash-o" size={25} color="black" />
               </TouchableOpacity>
             </View>
