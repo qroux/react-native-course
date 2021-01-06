@@ -8,8 +8,8 @@ const blogReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 99999).toString(),
-          title: `Article #${state.length}`,
-          content: faker.lorem.paragraphs(),
+          title: action.payload.title,
+          content: action.payload.content,
         },
       ];
     case "DELETE_BLOGPOST":
@@ -20,8 +20,8 @@ const blogReducer = (state, action) => {
 };
 
 const addBlogPost = (dispatch) => {
-  return () => {
-    dispatch({ type: "ADD_BLOGPOST" });
+  return (title, content) => {
+    dispatch({ type: "ADD_BLOGPOST", payload: { title, content } });
   };
 };
 
