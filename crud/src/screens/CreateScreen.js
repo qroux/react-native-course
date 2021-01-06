@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { View, Text } from "react-native";
 
 import { Context } from "../context/BlogContext";
-
 import Blogform from "../components/BlogForm";
 
 const CreateScreen = () => {

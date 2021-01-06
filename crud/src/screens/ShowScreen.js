@@ -17,11 +17,6 @@ const ShowScreen = ({ route }) => {
         <Text style={style.title}>
           {blogPost.title} - {route.params.id}
         </Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Edit", { id: blogPost.id })}
-        >
-          <Feather name="edit" size={24} color="black" />
-        </TouchableOpacity>
       </View>
 
       <Text style={style.content}>{blogPost.content || "empty"}</Text>

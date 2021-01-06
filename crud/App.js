@@ -9,6 +9,7 @@ import CreateScreen from "./src/screens/CreateScreen";
 import EditScreen from "./src/screens/EditScreen";
 
 import CreateButton from "./src/components/CreateButton";
+import EditButton from "./src/components/EditButton";
 
 const Stack = createStackNavigator();
 
@@ -22,7 +23,11 @@ const App = () => {
             component={IndexScreen}
             options={{ headerRight: () => <CreateButton /> }}
           />
-          <Stack.Screen name="Show" component={ShowScreen} />
+          <Stack.Screen
+            name="Show"
+            component={ShowScreen}
+            options={{ headerRight: () => <EditButton /> }}
+          />
           <Stack.Screen name="Create" component={CreateScreen} />
           <Stack.Screen name="Edit" component={EditScreen} />
         </Stack.Navigator>
