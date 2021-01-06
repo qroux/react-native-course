@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-const BlogForm = ({ submit, redirect }) => {
+import { Context } from "../context/BlogContext";
+
+const BlogForm = ({ submit, redirect, id }) => {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { state } = useContext(Context);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  useEffect(() => {
+    if (!route.params) return;
+
+    const post = state.find((post) => post.id === id);
+    setTitle(post.title);
+    setContent(post.content);
+  }, []);
 
   return (
     <View>
@@ -29,7 +42,7 @@ const BlogForm = ({ submit, redirect }) => {
       <Button
         title="Save"
         onPress={() => {
-          submit(title, content);
+          submit(title, content, id);
           navigation.navigate(redirect);
         }}
       />

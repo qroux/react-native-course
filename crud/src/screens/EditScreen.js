@@ -5,12 +5,12 @@ import { Context } from "../context/BlogContext";
 import BlogForm from "../components/BlogForm";
 
 const EditScreen = ({ route }) => {
-  const { state, editBlogPost } = useContext(Context);
+  const { editBlogPost } = useContext(Context);
 
   return (
     <View>
       <Text>Edit Screen- id: {route.params.id}</Text>
-      <BlogForm submit={editBlogPost} redirect="Index" />
+      <BlogForm submit={editBlogPost} redirect="Index" id={route.params.id} />
     </View>
   );
 };
