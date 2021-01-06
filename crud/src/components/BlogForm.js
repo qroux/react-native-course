@@ -43,7 +43,7 @@ const BlogForm = ({ submit, redirect, id }) => {
         title="Save"
         onPress={() => {
           submit(title, content, id);
-          navigation.navigate(redirect);
+          navigation.navigate(redirect, { id });
         }}
       />
     </View>
