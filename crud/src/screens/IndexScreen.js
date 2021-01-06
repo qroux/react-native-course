@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Context } from "../context/BlogContext";
-import { FontAwesome, AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const IndexScreen = () => {
@@ -41,16 +41,6 @@ const IndexScreen = () => {
       />
     </View>
   );
-};
-
-IndexScreen.navigationOptions = () => {
-  return {
-    headerRight: () => (
-      <TouchableOpacity onPress={() => navigation.navigate("Create")}>
-        <AntDesign name="plussquareo" size={24} color="black" />
-      </TouchableOpacity>
-    ),
-  };
 };
 
 const style = StyleSheet.create({

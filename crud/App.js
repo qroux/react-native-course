@@ -8,6 +8,8 @@ import ShowScreen from "./src/screens/ShowScreen";
 import CreateScreen from "./src/screens/CreateScreen";
 import EditScreen from "./src/screens/EditScreen";
 
+import CreateButton from "./src/components/CreateButton";
+
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -15,7 +17,11 @@ const App = () => {
     <NavigationContainer>
       <Provider>
         <Stack.Navigator>
-          <Stack.Screen name="Index" component={IndexScreen} />
+          <Stack.Screen
+            name="Index"
+            component={IndexScreen}
+            options={{ headerRight: () => <CreateButton /> }}
+          />
           <Stack.Screen name="Show" component={ShowScreen} />
           <Stack.Screen name="Create" component={CreateScreen} />
           <Stack.Screen name="Edit" component={EditScreen} />
