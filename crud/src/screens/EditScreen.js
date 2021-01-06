@@ -1,16 +1,15 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from "react";
+import { View, Text } from "react-native";
 
+import BlogForm from "../components/BlogForm";
 
-const EditScreen = () => {
-    return (
-        <View>
-            <Text>Edit Screen</Text>
-        </View>
-    )
-
-}
-
-
+const EditScreen = ({ route }) => {
+  return (
+    <View>
+      <Text>Edit Screen- id: {route.params.id}</Text>
+      <BlogForm />
+    </View>
+  );
+};
 
 export default EditScreen;

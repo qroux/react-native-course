@@ -1,4 +1,5 @@
 import createDataContext from "./createDataContext";
+import faker from "faker";
 
 const blogReducer = (state, action) => {
   switch (action.type) {
@@ -8,6 +9,7 @@ const blogReducer = (state, action) => {
         {
           id: Math.floor(Math.random() * 99999).toString(),
           title: `Article #${state.length}`,
+          content: faker.lorem.paragraphs(),
         },
       ];
     case "DELETE_BLOGPOST":
