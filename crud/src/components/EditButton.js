@@ -11,7 +11,7 @@ const EditButton = () => {
     <TouchableOpacity
       onPress={() => navigation.navigate("Edit", { id: route.params.id })}
     >
-      <Feather name="edit" size={24} color="black" style={style.headerButton} />
+      <Feather name="edit" size={30} color="black" style={style.headerButton} />
     </TouchableOpacity>
   );
 };

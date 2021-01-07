@@ -45,7 +45,8 @@ const BlogForm = ({ submit, redirection_path }) => {
           submit(
             title,
             content,
-            navigation.navigate(redirection_path.screen, redirection_path.id)
+            navigation.navigate(redirection_path.screen, redirection_path.id),
+            redirection_path.id
           );
         }}
       />

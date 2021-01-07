@@ -9,7 +9,7 @@ const CreateButton = () => {
     <TouchableOpacity onPress={() => navigation.navigate("Create")}>
       <AntDesign
         name="plussquareo"
-        size={24}
+        size={30}
         color="black"
         style={style.headerButton}
       />

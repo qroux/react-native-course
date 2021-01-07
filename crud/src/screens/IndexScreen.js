@@ -17,6 +17,14 @@ const IndexScreen = () => {
 
   useEffect(() => {
     getBlogPosts();
+
+    const listener = navigation.addListener("focus", () => {
+      getBlogPosts();
+    });
+
+    return () => {
+      listener.remove();
+    };
   }, []);
 
   return (
@@ -35,7 +43,7 @@ const IndexScreen = () => {
                 </Text>
 
                 <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                  <FontAwesome name="trash-o" size={25} color="black" />
+                  <FontAwesome name="trash-o" size={30} color="black" />
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>

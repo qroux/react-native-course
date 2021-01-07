@@ -1,14 +1,9 @@
 {
   "posts": [
     {
-      "id": "1",
-      "title": "entré à la main dans db",
-      "content": "lorem ofzejpojnefposehfh"
-    },
-    {
-      "title": "CREATE redirection",
-      "content": "Test",
-      "id": "WkHQmAM"
+      "title": "Modifié",
+      "content": "Juste ça",
+      "id": "1"
     }
   ]
 }
