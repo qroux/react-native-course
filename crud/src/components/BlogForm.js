@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { Context } from "../context/BlogContext";
 
-const BlogForm = ({ submit, redirect, id }) => {
+const BlogForm = ({ submit, redirection_path }) => {
   const navigation = useNavigation();
   const route = useRoute();
   const { state } = useContext(Context);
@@ -15,7 +15,7 @@ const BlogForm = ({ submit, redirect, id }) => {
   useEffect(() => {
     if (!route.params) return;
 
-    const post = state.find((post) => post.id === id);
+    const post = state.find((post) => post.id === redirection_path.id);
     setTitle(post.title);
     setContent(post.content);
   }, []);
@@ -42,8 +42,11 @@ const BlogForm = ({ submit, redirect, id }) => {
       <Button
         title="Save"
         onPress={() => {
-          submit(title, content, id);
-          navigation.navigate(redirect, { id });
+          submit(
+            title,
+            content,
+            navigation.navigate(redirection_path.screen, redirection_path.id)
+          );
         }}
       />
     </View>

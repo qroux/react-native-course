@@ -10,7 +10,10 @@ const CreateScreen = () => {
   return (
     <View>
       <Text>Create Screen</Text>
-      <Blogform submit={addBlogPost} redirect="Index" />
+      <Blogform
+        submit={addBlogPost}
+        redirection_path={{ screen: "Index", id: null }}
+      />
     </View>
   );
 };

@@ -10,7 +10,10 @@ const EditScreen = ({ route }) => {
   return (
     <View>
       <Text>Edit Screen- id: {route.params.id}</Text>
-      <BlogForm submit={editBlogPost} redirect="Show" id={route.params.id} />
+      <BlogForm
+        submit={editBlogPost}
+        redirection_path={{ screen: "Show", id: route.params.id }}
+      />
     </View>
   );
 };
