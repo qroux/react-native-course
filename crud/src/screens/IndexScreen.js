@@ -1,5 +1,5 @@
 // Import useContext hook
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,9 +12,20 @@ import { Context } from "../context/BlogContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
+import jsonServer from "../api/jsonServer";
+
 const IndexScreen = () => {
   const navigation = useNavigation();
   const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const res = await jsonServer.get("/posts");
+      console.log(res);
+    };
+
+    getPosts();
+  }, []);
 
   return (
     <View>
