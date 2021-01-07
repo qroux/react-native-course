@@ -4,7 +4,6 @@ import {
   View,
   Text,
   FlatList,
-  Button,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
@@ -12,19 +11,12 @@ import { Context } from "../context/BlogContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-import jsonServer from "../api/jsonServer";
-
 const IndexScreen = () => {
   const navigation = useNavigation();
-  const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+  const { state, getBlogPosts, deleteBlogPost } = useContext(Context);
 
   useEffect(() => {
-    const getPosts = async () => {
-      const res = await jsonServer.get("/posts");
-      console.log(res);
-    };
-
-    getPosts();
+    getBlogPosts();
   }, []);
 
   return (
