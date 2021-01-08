@@ -4,12 +4,14 @@ import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 
+import requireAuth from "./middlewares/requireAuth.js";
 import { AuthRoutes } from "./routes/authRoutes.js";
 
 const app = express();
 const port = process.env.port || 3000;
 
 app.use(bodyParser.json());
+
 // routes
 app.use(AuthRoutes);
 
@@ -30,8 +32,10 @@ mongoose.connection.on("error", (err) => {
 });
 
 // routes
-app.get("/", (req, res) => {
-  res.status("400").send("Index Working");
+app.get("/", requireAuth, (req, res) => {
+  res
+    .status("400")
+    .send(`id: ${req.user._id} - Your email is ${req.user.email}`);
 });
 
 app.listen(port, () => console.log(`listenning on port ${port}`));
