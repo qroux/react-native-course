@@ -32,10 +32,8 @@ mongoose.connection.on("error", (err) => {
 });
 
 // routes
-app.get("/", requireAuth, (req, res) => {
-  res
-    .status("400")
-    .send(`id: ${req.user._id} - Your email is ${req.user.email}`);
+app.get("/", (req, res) => {
+  res.status("400").send(`root route working not authenticated`);
 });
 
 app.listen(port, () => console.log(`listenning on port ${port}`));
