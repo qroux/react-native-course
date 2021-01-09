@@ -1,14 +1,22 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const AccountScreen = () => {
+const SignupScreen = () => {
+  const navigation = useNavigation();
   return (
     <View>
-      <Text>AccountScreen</Text>
+      <Text>SignupScreen</Text>
+      <Button
+        title="sign in"
+        onPress={() => {
+          navigation.navigate("SignIn");
+        }}
+      />
     </View>
   );
 };
 
 const style = StyleSheet.create({});
 
-export default AccountScreen;
+export default SignupScreen;

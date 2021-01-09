@@ -1,14 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 
 const AccountScreen = () => {
   return (
-    <>
-      <Text>Account screen</Text>
-    </>
+    <View style={style.container}>
+      <Text>Account screens</Text>
+    </View>
   );
 };
 
-const style = StyleSheet.create({});
+const style = StyleSheet.create({
+  container: {
+    marginTop: StatusBar.currentHeight,
+  },
+});
 
 export default AccountScreen;

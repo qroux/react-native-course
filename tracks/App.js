@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -10,6 +10,8 @@ import SigninScreen from "./src/screens/SigninScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
+
+import { CreateIcon, ListIcon, AccountIcon } from "./src/components/TabIcons";
 
 const AuthStack = createStackNavigator();
 const TrackListStack = createStackNavigator();
@@ -30,10 +32,44 @@ const TrackListScreens = () => (
 );
 
 const AppStackScreen = () => (
-  <AppStack.Navigator>
-    <AppStack.Screen name="TrackList" component={TrackListScreens} />
-    <AppStack.Screen name="TrackCreate" component={TrackCreateScreen} />
-    <AppStack.Screen name="Account" component={AccountScreen} />
+  <AppStack.Navigator
+    tabBarOptions={{
+      showIcon: true,
+      tabStyle: { justifyContent: "center" },
+    }}
+  >
+    <AppStack.Screen
+      name="TrackList"
+      component={TrackListScreens}
+      options={{
+        tabBarIcon: ({ focused, color }) => (
+          <ListIcon focused={focused} color={color} />
+        ),
+        tabBarLabel: ({ color }) => <Text style={{ color }}>Tracks</Text>,
+      }}
+    />
+
+    <AppStack.Screen
+      name="TrackCreate"
+      component={TrackCreateScreen}
+      options={{
+        tabBarIcon: ({ focused, color }) => (
+          <CreateIcon focused={focused} color={color} />
+        ),
+        tabBarLabel: ({ color }) => <Text style={{ color }}>New Track</Text>,
+      }}
+    />
+
+    <AppStack.Screen
+      name="Account"
+      component={AccountScreen}
+      options={{
+        tabBarIcon: ({ focused, color }) => (
+          <AccountIcon focused={focused} color={color} />
+        ),
+        tabBarLabel: ({ color }) => <Text style={{ color }}>Account</Text>,
+      }}
+    />
   </AppStack.Navigator>
 );
 
