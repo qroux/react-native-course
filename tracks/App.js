@@ -74,7 +74,7 @@ const AppStackScreen = () => (
 );
 
 export default function App() {
-  const isLoggedIn = false;
+  const isLoggedIn = !false;
   const userToken = "";
 
   return (
