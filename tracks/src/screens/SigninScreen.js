@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Text, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
+
+import { Context as AuthContext } from "../context/AuthContext";
 
 import { LogForm } from "../components/LogForm";
 import { Colors } from "../assets/main";
 
 const SigninScreen = () => {
   const navigation = useNavigation();
+  const { state, signin } = useContext(AuthContext);
+
   return (
     <View style={style.screenContainer}>
       <View>
@@ -17,7 +21,7 @@ const SigninScreen = () => {
         </View>
       </View>
 
-      <LogForm submit={() => console.log("Logged in")} btnTitle="Log In" />
+      <LogForm submit={signin} btnTitle="Log In" />
 
       <View style={style.footerContainer}>
         <Text style={{ color: Colors.lightGrey }}>No account yet ?</Text>

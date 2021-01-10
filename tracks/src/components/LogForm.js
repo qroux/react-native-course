@@ -41,7 +41,7 @@ const LogForm = ({ submit, btnTitle }) => {
       <Button
         title={btnTitle}
         buttonStyle={{ marginTop: 20 }}
-        onPress={() => submit(email, password)}
+        onPress={() => submit({ email, password })}
       />
     </View>
   );
