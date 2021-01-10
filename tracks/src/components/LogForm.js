@@ -1,10 +1,13 @@
-import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, TextInput, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
 import { Colors } from "../assets/main";
 
 const LogForm = ({ submit, btnTitle }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <View style={style.container}>
       <View style={style.field}>
@@ -15,6 +18,8 @@ const LogForm = ({ submit, btnTitle }) => {
           autoCapitalize="none"
           autoCompleteType={"email"}
           type="email"
+          value={email}
+          onChangeText={(e) => setEmail(e)}
         />
       </View>
 
@@ -26,6 +31,8 @@ const LogForm = ({ submit, btnTitle }) => {
           autoCapitalize="none"
           autoCompleteType={"password"}
           secureTextEntry={true}
+          value={password}
+          onChangeText={(e) => setPassword(e)}
         />
       </View>
 

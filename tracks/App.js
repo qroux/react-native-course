@@ -19,8 +19,16 @@ const AppStack = createBottomTabNavigator();
 
 const AuthStackScreen = () => (
   <AuthStack.Navigator>
-    <AuthStack.Screen name="SignIn" component={SigninScreen} />
-    <AuthStack.Screen name="SignUp" component={SignupScreen} />
+    <AuthStack.Screen
+      name="SignIn"
+      component={SigninScreen}
+      options={{ headerShown: false }}
+    />
+    <AuthStack.Screen
+      name="SignUp"
+      component={SignupScreen}
+      options={{ headerShown: false }}
+    />
   </AuthStack.Navigator>
 );
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Button } from "react-native-elements";
+import { View, StyleSheet, Dimensions } from "react-native";
+import { Text, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
 import { LogForm } from "../components/LogForm";
@@ -37,6 +37,8 @@ const SigninScreen = () => {
 const style = StyleSheet.create({
   screenContainer: {
     padding: 20,
+    height: Dimensions.get("window").height,
+    justifyContent: "center",
   },
   title: {
     fontSize: 40,

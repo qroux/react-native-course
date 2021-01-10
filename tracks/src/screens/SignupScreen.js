@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Button } from "react-native-elements";
+import { View, StyleSheet, Dimensions } from "react-native";
+import { Text, Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 
 import { LogForm } from "../components/LogForm";
@@ -23,17 +23,17 @@ const SignupScreen = () => {
         btnTitle="Register"
       />
 
-      {/* <View style={style.footerContainer}>
-        <Text style={{ color: Colors.lightGrey }}>No account yet ?</Text>
+      <View style={style.footerContainer}>
+        <Text style={{ color: Colors.lightGrey }}>Already registered ?</Text>
         <Button
-          title="Sign up"
+          title="Log in"
           titleStyle={{ fontSize: 20 }}
           type="clear"
           onPress={() => {
             navigation.navigate("SignIn");
           }}
         />
-      </View> */}
+      </View>
     </View>
   );
 };
@@ -41,6 +41,8 @@ const SignupScreen = () => {
 const style = StyleSheet.create({
   screenContainer: {
     padding: 20,
+    height: Dimensions.get("window").height,
+    justifyContent: "center",
   },
   title: {
     fontSize: 40,
