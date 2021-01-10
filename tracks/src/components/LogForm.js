@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
+import { Context as AuthContext } from "../context/AuthContext";
+
 import { Colors } from "../assets/main";
 
 const LogForm = ({ submit, btnTitle }) => {
@@ -39,7 +41,7 @@ const LogForm = ({ submit, btnTitle }) => {
       <Button
         title={btnTitle}
         buttonStyle={{ marginTop: 20 }}
-        onPress={() => submit()}
+        onPress={() => submit(email, password)}
       />
     </View>
   );

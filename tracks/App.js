@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,6 +12,10 @@ import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 
 import { CreateIcon, ListIcon, AccountIcon } from "./src/components/TabIcons";
+import {
+  Provider as AuthProvider,
+  Context as AuthContext,
+} from "./src/context/AuthContext";
 
 const AuthStack = createStackNavigator();
 const TrackListStack = createStackNavigator();
@@ -81,13 +85,20 @@ const AppStackScreen = () => (
   </AppStack.Navigator>
 );
 
-export default function App() {
-  const isLoggedIn = !false;
-  const userToken = "";
+const App = () => {
+  const { state } = useContext(AuthContext);
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <AuthStackScreen /> : <AppStackScreen />}
+      {!state.isSignedIn ? <AuthStackScreen /> : <AppStackScreen />}
     </NavigationContainer>
+  );
+};
+
+export default function authWrapper() {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   );
 }
