@@ -5,7 +5,8 @@ import { Button } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
 
 const AccountScreen = () => {
-  const { signout } = useContext(AuthContext);
+  const { state, signout } = useContext(AuthContext);
+
   return (
     <View style={style.container}>
       <Text>Account screens</Text>

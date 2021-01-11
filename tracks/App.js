@@ -10,12 +10,15 @@ import SigninScreen from "./src/screens/SigninScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackDetailScreen from "./src/screens/TrackDetailScreen";
+import LoadingScreen from "./src/screens/LoadingScreen";
 
 import { CreateIcon, ListIcon, AccountIcon } from "./src/components/TabIcons";
 import {
   Provider as AuthProvider,
   Context as AuthContext,
 } from "./src/context/AuthContext";
+
+import { navigationRef } from "./src/RootNavigation";
 
 const AuthStack = createStackNavigator();
 const TrackListStack = createStackNavigator();
@@ -88,9 +91,13 @@ const AppStackScreen = () => (
 const App = () => {
   const { state } = useContext(AuthContext);
 
+  if (state.isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <NavigationContainer>
-      {!state.isSignedIn ? <AuthStackScreen /> : <AppStackScreen />}
+    <NavigationContainer ref={navigationRef}>
+      {state.token ? <AppStackScreen /> : <AuthStackScreen />}
     </NavigationContainer>
   );
 };
