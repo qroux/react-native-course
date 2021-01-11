@@ -10,6 +10,10 @@ const authReducer = (state, action) => {
       return action.payload;
     case "SIGNOUT":
       return action.payload;
+    case "ADD_ERROR":
+      return { ...state, errorMessage: action.payload };
+    case "CLEAR_ERROR":
+      return { ...state, errorMessage: "" };
     default:
       return state;
   }
@@ -18,42 +22,54 @@ const authReducer = (state, action) => {
 // ACTIONS
 const signup = (dispatch) => {
   return async ({ email, password }) => {
-    console.log("signup route");
     try {
       const response = await trackerApi.post("/signup", { email, password });
       const { token } = response.data;
-
-      dispatch({ type: "SIGNUP", payload: { email, token, isSignedIn: true } });
+      dispatch({
+        type: "SIGNUP",
+        payload: { email, token, isSignedIn: true, errorMessage: "" },
+      });
     } catch (err) {
-      console.log("ici", err);
+      dispatch({
+        type: "ADD_ERROR",
+        payload: err.response.data,
+      });
     }
   };
 };
 
 const signin = (dispatch) => {
   return async ({ email, password }) => {
-    console.log("signin route");
-
     try {
       const response = await trackerApi.post("/signin", { email, password });
       const { token } = response.data;
-
-      dispatch({ type: "SIGNIN", payload: { email, token, isSignedIn: true } });
+      dispatch({
+        type: "SIGNIN",
+        payload: { email, token, isSignedIn: true, errorMessage: "" },
+      });
     } catch (err) {
-      console.log(err.message);
+      dispatch({
+        type: "ADD_ERROR",
+        payload: err.response.data.error,
+      });
     }
   };
 };
 
 const signout = (dispatch) => {
   return () => {
-    console.log("Disconnect action");
     dispatch({ type: "SIGNOUT", payload: { isSignedIn: false } });
+  };
+};
+
+const clearError = (dispatch) => {
+  return () => {
+    dispatch({ type: "CLEAR_ERROR" });
   };
 };
 
 export const { Context, Provider } = createDataContext(
   authReducer,
-  { signin, signout, signup },
-  { isSignedIn: false }
+  { signin, signout, signup, clearError },
+  { isSignedIn: false, errorMessage: "" }
 );

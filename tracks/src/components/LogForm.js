@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { View, TextInput, StyleSheet, Text } from "react-native";
 import { Button } from "react-native-elements";
 
 import { Context as AuthContext } from "../context/AuthContext";
@@ -9,9 +9,14 @@ import { Colors } from "../assets/main";
 const LogForm = ({ submit, btnTitle }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { state } = useContext(AuthContext);
 
   return (
     <View style={style.container}>
+      {state.errorMessage ? (
+        <Text style={style.error}>{state.errorMessage}</Text>
+      ) : null}
+
       <View style={style.field}>
         <TextInput
           placeholder="Email"
@@ -63,6 +68,10 @@ const style = StyleSheet.create({
     backgroundColor: "white",
     height: 45,
     padding: 10,
+  },
+  error: {
+    color: "#ff3636",
+    marginBottom: 5,
   },
 });
 

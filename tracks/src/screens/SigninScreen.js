@@ -10,7 +10,7 @@ import { Colors } from "../assets/main";
 
 const SigninScreen = () => {
   const navigation = useNavigation();
-  const { state, signin } = useContext(AuthContext);
+  const { state, signin, clearError } = useContext(AuthContext);
 
   return (
     <View style={style.screenContainer}>
@@ -30,6 +30,7 @@ const SigninScreen = () => {
           titleStyle={{ fontSize: 20 }}
           type="clear"
           onPress={() => {
+            clearError();
             navigation.navigate("SignUp");
           }}
         />
