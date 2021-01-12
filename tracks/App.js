@@ -17,6 +17,10 @@ import {
   Provider as AuthProvider,
   Context as AuthContext,
 } from "./src/context/AuthContext";
+import {
+  Provider as LocationProvider,
+  Context as LocationContext,
+} from "./src/context/LocationContext";
 
 import { navigationRef } from "./src/RootNavigation";
 
@@ -104,8 +108,10 @@ const App = () => {
 
 export default function authWrapper() {
   return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <LocationProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </LocationProvider>
   );
 }

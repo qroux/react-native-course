@@ -1,30 +1,23 @@
 import "../_mockLocation";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { requestPermissionsAsync } from "expo-location";
+import { Context as LocationContext } from "../context/LocationContext";
+import useLocation from "../hooks/useLocation";
 
 import { Map } from "../components/Map";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 const TrackCreateScreen = () => {
-  const [err, setErr] = useState("");
+  const { addLocation } = useContext(LocationContext);
+  const navigation = useNavigation();
+  const [err] = useLocation(addLocation);
 
-  const startWatching = async () => {
-    try {
-      const { granted } = await requestPermissionsAsync();
-      if (!granted) {
-        throw new Error(
-          "Location permission not granted. Enable location to continue"
-        );
-      }
-    } catch (e) {
-      setErr(e.message);
-    }
-  };
-
-  useEffect(() => {
-    startWatching();
-  }, []);
+  // useEffect(() => {
+  //   const leaving = navigation.addListener("blur", () => {
+  //     console.log("Leaving Page");
+  //   });
+  // }, []);
 
   return (
     <SafeAreaView style={style.container}>
