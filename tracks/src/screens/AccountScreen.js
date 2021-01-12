@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, StatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { Context as AuthContext } from "../context/AuthContext";
 
@@ -8,15 +9,14 @@ const AccountScreen = () => {
   const { state, signout } = useContext(AuthContext);
 
   return (
-    <View style={style.container}>
+    <SafeAreaView style={style.container}>
       <Button title="Disconnect" onPress={signout} />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const style = StyleSheet.create({
   container: {
-    marginTop: StatusBar.currentHeight,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

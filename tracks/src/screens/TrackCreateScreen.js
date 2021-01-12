@@ -1,17 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { Map } from "../components/Map";
 
 const TrackCreateScreen = () => {
   return (
-    <View style={style.container}>
-      <Text>Create a new Screen</Text>
-    </View>
+    <SafeAreaView style={style.container}>
+      <Text style={style.header}>New Track</Text>
+      <Map />
+    </SafeAreaView>
   );
 };
 
 const style = StyleSheet.create({
   container: {
-    marginTop: StatusBar.currentHeight,
+    flex: 1,
+  },
+  header: {
+    marginVertical: 10,
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });
 
