@@ -61,17 +61,13 @@ const signin = (dispatch) => async ({ email, password }) => {
   }
 };
 
-const signout = (dispatch) => {
-  return async () => {
-    dispatch({ type: "SIGNOUT", payload: { isSignedIn: false } });
-    await AsyncStorage.removeItem("token");
-  };
+const signout = (dispatch) => async () => {
+  dispatch({ type: "SIGNOUT", payload: { isSignedIn: false } });
+  await AsyncStorage.removeItem("token");
 };
 
-const clearError = (dispatch) => {
-  return () => {
-    dispatch({ type: "CLEAR_ERROR" });
-  };
+const clearError = (dispatch) => () => {
+  dispatch({ type: "CLEAR_ERROR" });
 };
 
 //UTILS

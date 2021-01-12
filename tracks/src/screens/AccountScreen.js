@@ -9,7 +9,6 @@ const AccountScreen = () => {
 
   return (
     <View style={style.container}>
-      <Text>Account screens</Text>
       <Button title="Disconnect" onPress={signout} />
     </View>
   );
@@ -18,6 +17,9 @@ const AccountScreen = () => {
 const style = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
