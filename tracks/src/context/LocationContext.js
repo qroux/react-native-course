@@ -41,7 +41,7 @@ const addLocation = (dispatch) => async (location, recording) => {
   }
 };
 
-const changeName = () => async (name) => {
+const changeName = (dispatch) => async (name) => {
   dispatch({ type: "CHANGE_NAME", payload: name });
 };
 

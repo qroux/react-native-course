@@ -3,6 +3,7 @@ import { View, StyleSheet, TextInput } from "react-native";
 import { Button, Input } from "react-native-elements";
 import { Context as LocationContext } from "../context/LocationContext";
 import { Colors } from "../assets/main";
+import useSaveTrack from "../hooks/useSaveTrack";
 
 export const TrackForm = () => {
   const {
@@ -11,14 +12,15 @@ export const TrackForm = () => {
     stopRecording,
     changeName,
   } = useContext(LocationContext);
-  const [title, setTitle] = useState("");
+
+  const [saveTrack] = useSaveTrack();
 
   return (
     <View style={style.container}>
       <TextInput
         style={style.field}
         value={name}
-        onChangeText={setTitle}
+        onChangeText={changeName}
         placeholder="Track Title"
       />
       <View style={style.buttonContainer}>
@@ -37,7 +39,7 @@ export const TrackForm = () => {
         )}
         <Button
           title="Save"
-          onPress={startRecording}
+          onPress={saveTrack}
           disabled={locations.length <= 0}
           buttonStyle={{ width: 150, backgroundColor: "grey" }}
         />
