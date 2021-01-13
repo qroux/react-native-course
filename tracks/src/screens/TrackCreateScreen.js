@@ -1,5 +1,5 @@
 import "../_mockLocation";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useCallback } from "react";
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Context as LocationContext } from "../context/LocationContext";
@@ -7,21 +7,20 @@ import useLocation from "../hooks/useLocation";
 
 import { Map } from "../components/Map";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
+import { TrackForm } from "../components/TrackForm";
 
 const TrackCreateScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
+  const { state, addLocation } = useContext(LocationContext);
+  const callback = useCallback(
+    (location) => {
+      addLocation(location, state.recording);
+    },
+    [state.recording]
+  );
 
-  const { addLocation } = useContext(LocationContext);
-  const [err] = useLocation(isFocused, addLocation);
-
-  // useEffect(() => {
-  //   if (isFocused) {
-  //     console.log("FOCUSES");
-  //   } else {
-  //     console.log("BLUR");
-  //   }
-  // }, [isFocused]);
+  const [err] = useLocation(isFocused || state.recording, callback);
 
   return (
     <SafeAreaView style={style.container}>
@@ -30,6 +29,7 @@ const TrackCreateScreen = () => {
       {err ? (
         <Text style={{ color: "red", fontWeight: "bold" }}>{err}</Text>
       ) : null}
+      <TrackForm />
     </SafeAreaView>
   );
 };
