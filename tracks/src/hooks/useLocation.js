@@ -5,8 +5,9 @@ import {
   watchPositionAsync,
 } from "expo-location";
 
-const locationHook = (callback) => {
+const locationHook = (shouldTrack, callback) => {
   const [err, setErr] = useState("");
+  const [subscriber, setSubscriber] = useState(null);
 
   const startWatching = async () => {
     try {
@@ -18,7 +19,7 @@ const locationHook = (callback) => {
         );
       }
 
-      await watchPositionAsync(
+      const sub = await watchPositionAsync(
         {
           accuracy: Accuracy.BestForNavigation,
           timeInterval: 1000,
@@ -28,14 +29,20 @@ const locationHook = (callback) => {
           callback(location);
         }
       );
+      setSubscriber(sub);
     } catch (e) {
       setErr(e.message);
     }
   };
 
   useEffect(() => {
-    startWatching();
-  }, []);
+    if (shouldTrack) {
+      startWatching();
+    } else {
+      subscriber.remove();
+      setSubscriber(null);
+    }
+  }, [shouldTrack]);
 
   return [err];
 };

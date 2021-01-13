@@ -6,18 +6,22 @@ import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
 
 import { Map } from "../components/Map";
-import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 
 const TrackCreateScreen = () => {
-  const { addLocation } = useContext(LocationContext);
   const navigation = useNavigation();
-  const [err] = useLocation(addLocation);
+  const isFocused = useIsFocused();
+
+  const { addLocation } = useContext(LocationContext);
+  const [err] = useLocation(isFocused, addLocation);
 
   // useEffect(() => {
-  //   const leaving = navigation.addListener("blur", () => {
-  //     console.log("Leaving Page");
-  //   });
-  // }, []);
+  //   if (isFocused) {
+  //     console.log("FOCUSES");
+  //   } else {
+  //     console.log("BLUR");
+  //   }
+  // }, [isFocused]);
 
   return (
     <SafeAreaView style={style.container}>
