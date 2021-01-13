@@ -21,6 +21,10 @@ import {
   Provider as LocationProvider,
   Context as LocationContext,
 } from "./src/context/LocationContext";
+import {
+  Provider as TrackProvider,
+  Context as TrackContext,
+} from "./src/context/TrackContext";
 
 import { navigationRef } from "./src/RootNavigation";
 
@@ -108,10 +112,12 @@ const App = () => {
 
 export default function authWrapper() {
   return (
-    <LocationProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </LocationProvider>
+    <TrackProvider>
+      <LocationProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </LocationProvider>
+    </TrackProvider>
   );
 }
