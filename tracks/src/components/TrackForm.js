@@ -4,8 +4,10 @@ import { Button, Input } from "react-native-elements";
 import { Context as LocationContext } from "../context/LocationContext";
 import { Colors } from "../assets/main";
 import useSaveTrack from "../hooks/useSaveTrack";
+import { useNavigation } from "@react-navigation/native";
 
 export const TrackForm = () => {
+  const navigation = useNavigation();
   const {
     state: { name, recording, locations },
     startRecording,
@@ -39,7 +41,10 @@ export const TrackForm = () => {
         )}
         <Button
           title="Save"
-          onPress={saveTrack}
+          onPress={() => {
+            saveTrack(name, locations);
+            navigation.navigate("TrackList");
+          }}
           disabled={locations.length <= 0}
           buttonStyle={{ width: 150, backgroundColor: "grey" }}
         />
