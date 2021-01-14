@@ -42,6 +42,8 @@ export const TrackForm = () => {
         <Button
           title="Save"
           onPress={() => {
+            // ICI OK
+            console.log("BOUTON =>", name, locations);
             saveTrack(name, locations);
             navigation.navigate("TrackList");
           }}

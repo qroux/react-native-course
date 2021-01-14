@@ -15,7 +15,7 @@ const locationReducer = (state, action) => {
     case "ADD_LOCATION":
       return {
         ...state,
-        locations: [...state.locations, action.payload.coords],
+        locations: [...state.locations, action.payload],
       };
     case "CHANGE_NAME":
       return { ...state, name: action.payload };

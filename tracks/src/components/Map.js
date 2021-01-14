@@ -17,30 +17,23 @@ export const Map = () => {
       style={style.mapContainer}
       initialRegion={{
         ...currentLocation.coords,
-        latitudeDelta: 0.5,
-        longitudeDelta: 0.5,
+        latitudeDelta: 0.02,
+        longitudeDelta: 0.02,
       }}
-      //   region={{
-      //     ...currentLocation.coords,
-      //     latitudeDelta: 0.01,
-      //     longitudeDelta: 0.01,
-      //   }}
     >
       <Circle
         center={currentLocation.coords}
-        radius={120}
+        radius={30}
         strokeColor="rgba(0, 122, 255, 1.0)"
         fillColor="rgba(0, 122, 255, 0.3)"
       />
-      <Polyline coordinates={locations} />
+      <Polyline coordinates={locations.map((loc) => loc.coords)} />
     </MapView>
   );
 };
 
 const style = StyleSheet.create({
   mapContainer: {
-    borderWidth: 1,
-    borderColor: "black",
     flex: 0.7,
   },
 });

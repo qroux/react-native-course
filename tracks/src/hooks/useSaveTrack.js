@@ -10,6 +10,8 @@ export default () => {
   } = useContext(LocationContext);
 
   const saveTrack = async () => {
+    // OK
+    console.log("USESAVETRACK HOOK =>", name, locations);
     try {
       await createTrack(name, locations);
       await resetLocation();
