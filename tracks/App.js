@@ -49,8 +49,16 @@ const AuthStackScreen = () => (
 
 const TrackListScreens = () => (
   <TrackListStack.Navigator>
-    <TrackListStack.Screen name="TrackList" component={TrackListScreen} />
-    <TrackListStack.Screen name="TrackDetail" component={TrackDetailScreen} />
+    <TrackListStack.Screen
+      name="TrackList"
+      component={TrackListScreen}
+      options={{ title: "History" }}
+    />
+    <TrackListStack.Screen
+      name="TrackDetail"
+      component={TrackDetailScreen}
+      options={{ title: "Details" }}
+    />
   </TrackListStack.Navigator>
 );
 

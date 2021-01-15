@@ -1,4 +1,4 @@
-import "../_mockLocation";
+// import "../_mockLocation";
 import React, { useContext, useCallback } from "react";
 import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -27,7 +27,7 @@ const TrackCreateScreen = () => {
 
   return (
     <SafeAreaView style={style.container}>
-      <Text style={style.header}>New Track</Text>
+      {/* <Text style={style.header}>New Track</Text> */}
       <Map />
       {err ? (
         <Text style={{ color: "red", fontWeight: "bold" }}>{err}</Text>

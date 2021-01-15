@@ -21,7 +21,6 @@ const fetchTracks = (dispatch) => async () => {
   }
 };
 const createTrack = (dispatch) => async (name, locations) => {
-  console.log("DANS CONTEXT =>", name, locations);
   try {
     await trackerApi.post("/tracks", { name, locations });
   } catch (err) {
